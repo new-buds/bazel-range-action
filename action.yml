@@ -1,0 +1,5 @@
+name: 'Bazel Range'
+description: 'Compute Bazel impacted targets and label pull requests automatically.'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
