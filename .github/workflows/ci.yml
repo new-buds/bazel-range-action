@@ -3,23 +3,23 @@ run-name: >
   ${{ github.workflow }}
   ${{ github.event_name == 'pull_request' &&
       format(' - {0} (#{1})', github.event.pull_request.title, github.event.pull_request.number) || '' }}
-  ${{ github.event_name == 'push' && format(' - {0}', github.ref_name) || '' }}
 concurrency:
-  # This section ensure that multiple PR pushes will not cancel superseded builds.
+  # This section ensure that multiple PR pushes will cancel superseded builds.
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
+
 on:
   pull_request:
     # When a PR is to be merged to the main branch or any release branches
     branches:
-      - 'main'
-      - 'release/**'
+      - "main"
+      - "release/**"
 
   push:
     # When the main branch or any release branch is updated
     branches:
-      - 'main'
-      - 'release/**'
+      - "main"
+      - "release/**"
 
   workflow_dispatch:
 
@@ -32,21 +32,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        shell: bash
-        run: >
-          yarn
+        run: yarn install
 
-      - name: Format check
-        shell: bash
-        run: >
-          yarn format:check
-
-      - name: Lint check
-        shell: bash
-        run: >
-          yarn lint
+      - name: Formater and linter check
+        run: yarn checker
 
       - name: Build
-        shell: bash
-        run: >
-          yarn build
+        run: yarn build

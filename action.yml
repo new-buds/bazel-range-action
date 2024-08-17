@@ -1,5 +1,5 @@
-name: 'Bazel Range'
-description: 'Compute Bazel impacted targets and label pull requests automatically.'
+name: "Bazel Range Action"
+description: "Compute impacted targets and tags for a pull request based on Bazel."
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/main.js"

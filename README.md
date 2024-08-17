@@ -3,5 +3,5 @@
   Bazel Range Action
 </h1>
 
-<h3 align="center">Compute Bazel impacted targets and label pull requests automatically.</h3>
+<h3 align="center">Compute impacted targets and tags for a pull request based on Bazel.</h3>
 <br/>
