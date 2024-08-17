@@ -1,4 +1,4 @@
-name: CI
+name: Build
 run-name: >
   ${{ github.workflow }}
   ${{ github.event_name == 'pull_request' &&
@@ -12,14 +12,14 @@ on:
   pull_request:
     # When a PR is to be merged to the main branch or any release branches
     branches:
-      - "main"
-      - "release/**"
+      - main
+      - release/**
 
   push:
     # When the main branch or any release branch is updated
     branches:
-      - "main"
-      - "release/**"
+      - main
+      - release/**
 
   workflow_dispatch:
 
